@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Layout Examples</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* 1. FLEXBOX EXAMPLES */
+        .flex-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .flex-item {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            background: #e8f5e8;
+        }
+
+        .flex-space-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #fff3cd;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            background: #f8d7da;
+        }
+
+        /* 2. CSS GRID EXAMPLES */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 80px 1fr 60px;
+            gap: 20px;
+            height: 400px;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+
+        .grid-item {
+            background: #e74c3c;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header { grid-column: 1 / -1; background: #2c3e50; }
+        .sidebar { background: #27ae60; }
+        .main { background: #3498db; }
+        .aside { background: #f39c12; }
+        .footer { grid-column: 1 / -1; background: #8e44ad; }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+        }
+
+        /* 3. POSITIONING EXAMPLES */
+        .position-container {
+            position: relative;
+            height: 200px;
+            background: #ecf0f1;
+            margin: 20px 0;
+        }
+
+        .absolute-box {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            z-index: 100;
+        }
+
+        /* 4. RESPONSIVE LAYOUT */
+        .responsive-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .responsive-layout {
+                grid-template-columns: 1fr 3fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .responsive-layout {
+                grid-template-columns: 1fr 3fr 1fr;
+            }
+        }
+
+        .responsive-item {
+            background: #95a5a6;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #34495e;
+            color: white;
+            padding: 15px 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="sticky-header">
+        <h1>CSS Layout Methods - Sticky Header</h1>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">MyWebsite</div>
+        <ul class="nav-links">
+            <li><a href="#flexbox">Flexbox</a></li>
+            <li><a href="#grid">Grid</a></li>
+            <li><a href="#positioning">Positioning</a></li>
+            <li><a href="#responsive">Responsive</a></li>
+        </ul>
+    </nav>
+
+    <!-- FLEXBOX EXAMPLES -->
+    <section class="section" id="flexbox">
+        <h2>1. Flexbox Layouts</h2>
+        
+        <h3>Basic Flex Container</h3>
+        <div class="flex-container">
+            <div class="flex-item">Item 1</div>
+            <div class="flex-item">Item 2</div>
+            <div class="flex-item">Item 3</div>
+        </div>
+
+        <h3>Perfect Centering</h3>
+        <div class="flex-center">
+            <div class="flex-item">Perfectly Centered!</div>
+        </div>
+
+        <h3>Space Between Items</h3>
+        <div class="flex-space-between">
+            <div class="flex-item">Left</div>
+            <div class="flex-item">Center</div>
+            <div class="flex-item">Right</div>
+        </div>
+
+        <h3>Flex Column</h3>
+        <div class="flex-column">
+            <div class="flex-item">Top</div>
+            <div class="flex-item">Middle</div>
+            <div class="flex-item">Bottom</div>
+        </div>
+    </section>
+
+    <!-- CSS GRID EXAMPLES -->
+    <section class="section" id="grid">
+        <h2>2. CSS Grid Layouts</h2>
+        
+        <h3>Classic Website Layout</h3>
+        <div class="grid-container">
+            <div class="grid-item header">Header</div>
+            <div class="grid-item sidebar">Sidebar</div>
+            <div class="grid-item main">Main Content</div>
+            <div class="grid-item aside">Aside</div>
+            <div class="grid-item footer">Footer</div>
+        </div>
+
+        <h3>Responsive Card Grid</h3>
+        <div class="card-grid">
+            <div class="card">
+                <h4>Card 1</h4>
+                <p>This card automatically adjusts its size based on available space.</p>
+            </div>
+            <div class="card">
+                <h4>Card 2</h4>
+                <p>Grid auto-fit creates responsive layouts without media queries.</p>
+            </div>
+            <div class="card">
+                <h4>Card 3</h4>
+                <p>Each card has a minimum width of 250px and grows to fill space.</p>
+            </div>
+            <div class="card">
+                <h4>Card 4</h4>
+                <p>Try resizing your browser to see the responsive behavior.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- POSITIONING EXAMPLES -->
+    <section class="section" id="positioning">
+        <h2>3. CSS Positioning</h2>
+        
+        <h3>Absolute Positioning</h3>
+        <div class="position-container">
+            <p>This container has relative positioning...</p>
+            <div class="absolute-box">Absolutely Positioned</div>
+        </div>
+    </section>
+
+    <!-- RESPONSIVE LAYOUT -->
+    <section class="section" id="responsive">
+        <h2>4. Responsive Layout</h2>
+        <p>Resize your browser to see this layout adapt:</p>
+        
+        <div class="responsive-layout">
+            <div class="responsive-item">Sidebar<br>(Mobile: Full width)<br>(Tablet: 1/4 width)<br>(Desktop: 1/5 width)</div>
+            <div class="responsive-item">Main Content<br>(Mobile: Full width)<br>(Tablet: 3/4 width)<br>(Desktop: 3/5 width)</div>
+            <div class="responsive-item">Right Sidebar<br>(Mobile: Hidden)<br>(Tablet: Hidden)<br>(Desktop: 1/5 width)</div>
+        </div>
+    </section>
+
+    <!-- Add some content to demonstrate sticky header -->
+    <div style="height: 500px; padding: 40px; background: #f8f9fa;">
+        <h2>Scroll up to see the sticky header in action!</h2>
+        <p>This content is here to demonstrate the sticky positioning of the header. When you scroll up, the header will stick to the top of the viewport.</p>
+    </div>
+</body>
+</html>
