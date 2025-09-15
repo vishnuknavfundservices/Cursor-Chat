@@ -1,0 +1,565 @@
+/* ===================================
+   CSS LAYOUT TECHNIQUES - COMPLETE GUIDE
+   =================================== */
+
+/* 1. FLEXBOX LAYOUTS
+   ================== */
+
+/* Basic Flex Container */
+.flex-container {
+    display: flex;
+    flex-direction: row; /* row | row-reverse | column | column-reverse */
+    flex-wrap: wrap; /* nowrap | wrap | wrap-reverse */
+    justify-content: center; /* flex-start | flex-end | center | space-between | space-around | space-evenly */
+    align-items: stretch; /* flex-start | flex-end | center | baseline | stretch */
+    align-content: flex-start; /* flex-start | flex-end | center | space-between | space-around | stretch */
+    gap: 20px; /* Spacing between items */
+}
+
+/* Flex Items */
+.flex-item {
+    flex-grow: 1; /* How much the item should grow */
+    flex-shrink: 1; /* How much the item should shrink */
+    flex-basis: auto; /* Initial main size before growing/shrinking */
+    /* Shorthand: flex: 1 1 auto; */
+    align-self: auto; /* Override align-items for individual item */
+}
+
+/* Common Flex Patterns */
+
+/* Center everything */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Navigation bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Card layout */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 300px; /* Grow, shrink, min-width */
+}
+
+/* Sidebar layout */
+.flex-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    flex: 0 0 250px; /* Don't grow, don't shrink, fixed width */
+}
+
+.main-content {
+    flex: 1; /* Take remaining space */
+}
+
+
+/* 2. CSS GRID LAYOUTS
+   =================== */
+
+/* Basic Grid Container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: auto; /* Auto height rows */
+    gap: 20px; /* Space between grid items */
+    grid-auto-flow: row; /* row | column | row dense | column dense */
+}
+
+/* Advanced Grid Templates */
+
+/* Responsive grid with minmax */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Named grid lines */
+.grid-lines {
+    display: grid;
+    grid-template-columns: [start] 200px [content-start] 1fr [content-end] 200px [end];
+    grid-template-rows: [header] 100px [main] auto [footer] 100px;
+}
+
+/* Grid template areas */
+.grid-areas {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+.header { grid-area: header; }
+.nav { grid-area: nav; }
+.main { grid-area: main; }
+.aside { grid-area: aside; }
+.footer { grid-area: footer; }
+
+/* Grid item placement */
+.grid-item {
+    grid-column: 1 / 3; /* Start at line 1, end at line 3 */
+    grid-row: 2 / 4; /* Start at line 2, end at line 4 */
+    /* Or use span */
+    grid-column: span 2; /* Span 2 columns */
+    grid-row: span 3; /* Span 3 rows */
+}
+
+/* Complex dashboard layout */
+.dashboard {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    grid-template-rows: 60px 1fr 40px;
+    grid-template-areas:
+        "sidebar header header"
+        "sidebar content widgets"
+        "sidebar footer footer";
+    height: 100vh;
+    gap: 10px;
+}
+
+
+/* 3. POSITIONING LAYOUTS
+   ===================== */
+
+/* Relative positioning */
+.relative-box {
+    position: relative;
+    top: 20px; /* Move 20px down from original position */
+    left: 30px; /* Move 30px right from original position */
+    z-index: 10; /* Stacking order */
+}
+
+/* Absolute positioning */
+.absolute-container {
+    position: relative; /* Creates positioning context */
+}
+
+.absolute-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* Centers absolutely positioned element */
+    margin: auto;
+    width: 200px;
+    height: 200px;
+}
+
+/* Fixed positioning */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1000;
+}
+
+/* Sticky positioning */
+.sticky-sidebar {
+    position: sticky;
+    top: 20px; /* Sticks 20px from top when scrolling */
+}
+
+/* Overlay/Modal pattern */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    position: relative;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+}
+
+
+/* 4. FLOAT LAYOUTS (Legacy)
+   ========================= */
+
+/* Basic float layout */
+.float-container::after {
+    content: "";
+    display: table;
+    clear: both; /* Clear floats */
+}
+
+.float-left {
+    float: left;
+    width: 30%;
+    margin-right: 20px;
+}
+
+.float-right {
+    float: right;
+    width: 30%;
+    margin-left: 20px;
+}
+
+/* Two-column layout with floats */
+.two-column-float {
+    overflow: hidden; /* Contains floats */
+}
+
+.column-left {
+    float: left;
+    width: 65%;
+    padding-right: 20px;
+}
+
+.column-right {
+    float: right;
+    width: 35%;
+    padding-left: 20px;
+}
+
+
+/* 5. MULTI-COLUMN LAYOUT
+   ====================== */
+
+.multi-column {
+    column-count: 3;
+    column-gap: 40px;
+    column-rule: 1px solid #ddd;
+    column-width: 200px; /* Minimum column width */
+}
+
+.column-span {
+    column-span: all; /* Span across all columns */
+}
+
+/* Masonry-like layout */
+.masonry {
+    column-count: 3;
+    column-gap: 20px;
+}
+
+.masonry-item {
+    break-inside: avoid; /* Prevent breaking inside item */
+    margin-bottom: 20px;
+}
+
+
+/* 6. DISPLAY TYPES
+   ================ */
+
+/* Block */
+.block {
+    display: block;
+    width: 100%; /* Takes full width */
+}
+
+/* Inline */
+.inline {
+    display: inline;
+    /* Width and height don't apply */
+}
+
+/* Inline-block */
+.inline-block {
+    display: inline-block;
+    width: 200px; /* Can set width */
+    height: 100px; /* Can set height */
+    vertical-align: middle;
+}
+
+/* Table display */
+.table-layout {
+    display: table;
+    width: 100%;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+
+/* 7. RESPONSIVE DESIGN PATTERNS
+   ============================= */
+
+/* Mobile-first approach */
+.container {
+    width: 100%;
+    padding: 15px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .container {
+        max-width: 750px;
+        margin: 0 auto;
+    }
+    
+    .grid-responsive {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+    }
+    
+    .grid-responsive {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Container queries (newer feature) */
+@container (min-width: 400px) {
+    .card {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+
+/* 8. MODERN LAYOUT TECHNIQUES
+   =========================== */
+
+/* Aspect ratio boxes */
+.aspect-ratio-16-9 {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    background: #f0f0f0;
+}
+
+/* Clamp for responsive sizing */
+.responsive-text {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    padding: clamp(1rem, 3vw, 3rem);
+}
+
+/* Subgrid (for nested grids) */
+.parent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.subgrid-item {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span 2;
+}
+
+/* Container queries */
+.card-container {
+    container-type: inline-size;
+    container-name: card;
+}
+
+@container card (min-width: 400px) {
+    .card-content {
+        display: flex;
+        gap: 20px;
+    }
+}
+
+/* Logical properties for internationalization */
+.logical-box {
+    margin-inline: auto; /* margin-left and margin-right */
+    padding-block: 2rem; /* padding-top and padding-bottom */
+    border-inline-start: 3px solid blue; /* border-left in LTR */
+}
+
+
+/* 9. COMMON LAYOUT PATTERNS
+   ========================= */
+
+/* Holy Grail Layout */
+.holy-grail {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "nav main aside"
+        "footer footer footer";
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* Sticky Footer */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-content {
+    flex: 1;
+}
+
+.page-footer {
+    flex-shrink: 0;
+}
+
+/* Equal Height Columns */
+.equal-height-container {
+    display: flex;
+}
+
+.equal-height-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.column-content {
+    flex: 1;
+}
+
+/* Centered Content */
+.center-content {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+/* Split Screen */
+.split-screen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+
+/* Z-Pattern Layout */
+.z-pattern {
+    display: grid;
+    grid-template-areas:
+        "logo nav"
+        "hero hero"
+        "feature1 feature2"
+        "cta cta";
+}
+
+/* F-Pattern Layout */
+.f-pattern {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-areas:
+        "header header"
+        "sidebar content";
+}
+
+
+/* 10. UTILITY CLASSES
+    =================== */
+
+/* Spacing */
+.m-0 { margin: 0; }
+.m-1 { margin: 0.25rem; }
+.m-2 { margin: 0.5rem; }
+.m-3 { margin: 1rem; }
+.m-4 { margin: 1.5rem; }
+.m-5 { margin: 3rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+.my-auto { margin-top: auto; margin-bottom: auto; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 3rem; }
+
+/* Display utilities */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+/* Position utilities */
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed { position: fixed; }
+.position-sticky { position: sticky; }
+
+/* Flex utilities */
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+.align-center { align-items: center; }
+.align-baseline { align-items: baseline; }
+.align-stretch { align-items: stretch; }
+
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+/* Grid utilities */
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 1rem; }
+.gap-4 { gap: 1.5rem; }
+.gap-5 { gap: 3rem; }
+
+/* Width utilities */
+.w-25 { width: 25%; }
+.w-50 { width: 50%; }
+.w-75 { width: 75%; }
+.w-100 { width: 100%; }
+.w-auto { width: auto; }
+
+/* Height utilities */
+.h-25 { height: 25%; }
+.h-50 { height: 50%; }
+.h-75 { height: 75%; }
+.h-100 { height: 100%; }
+.h-auto { height: auto; }
+.min-h-screen { min-height: 100vh; }
+
+/* Text alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
